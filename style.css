@@ -1,0 +1,523 @@
+:root {
+  --bg: #0f0f0f;
+  --fg: #f0f0f0;
+  --accent: #00ffff;
+  --card-bg: #1a1a1a;
+}
+
+body {
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  background: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+}
+
+.page-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.page {
+  height: 100vh;
+  flex-direction: column;
+  width: 100vw;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  position: relative;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('assets/soul_tide_banner.png') center/cover no-repeat;
+  filter: brightness(0.1) blur(8px);
+  z-index: 0;
+  opacity: 0;
+  transition: none;
+}
+
+.hero-bg.glitch {
+  animation: glitchReveal 1.2s steps(5, end) forwards;
+}
+
+@keyframes glitchReveal {
+  0%   { opacity: 0; filter: brightness(0.1) blur(8px); }
+  20%  { opacity: 1; filter: brightness(0.6) blur(4px); }
+  40%  { opacity: 0.3; filter: brightness(0.3) blur(6px); }
+  60%  { opacity: 1; filter: brightness(0.8) blur(2px); }
+  80%  { opacity: 0.5; filter: brightness(0.5) blur(5px); }
+  100% { opacity: 1; filter: brightness(1) blur(0); }
+}
+
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 10, 40, 0.6);
+  z-index: 1;
+}
+
+.hero-text {
+  z-index: 2;
+  color: var(--accent);
+  max-width: 800px;
+  padding: 2em;
+}
+
+
+.typewriter {
+
+  font-size: 3.2rem;
+  color: #e0e0e0;
+  text-shadow: 0 0 8px #ff4f81;
+
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 10%;
+  border-right: 2px solid #00ffff;
+  animation: typing 3s steps(20, end), blink 0.7s step-end infinite;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #c0aaff;
+  margin-top: 0.5em;
+  letter-spacing: 2px;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.scroll-indicator {
+  position: fixed; /* 改为 fixed，确保始终在视口底部 */
+  bottom: 60px;     /* 距离底部更近 */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+  animation: fadeInScroll 1s ease-in 2s forwards;
+}
+
+.mouse-svg {
+  width: 32px;
+  height: auto;
+  opacity: 0.8;
+}
+
+.arrow-svg {
+  width: 20px;
+  height: auto;
+  margin-top: 8px;
+  animation: bounceArrow 1.5s infinite;
+  opacity: 0.8;
+}
+
+.mouse-svg,
+.arrow-svg {
+  filter: brightness(1000%) invert(100%);
+  opacity: 0.9;
+}
+
+
+@keyframes fadeInScroll {
+  to { opacity: 1; }
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+
+@keyframes fadeInArrow {
+  to { opacity: 1; }
+}
+
+
+@keyframes fadeInSegment {
+  to { opacity: 1; }
+}
+
+
+@keyframes fadeInBtn {
+  to { opacity: 1; }
+}
+
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.neon-btn {
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  padding: 0.8em 1.5em;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 10px #00ffff;
+  transition: all 0.3s ease;
+}
+
+.neon-btn:hover {
+  box-shadow: 0 0 20px #00ffff;
+  transform: scale(1.05);
+}
+
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 5px var(--accent); }
+  50% { box-shadow: 0 0 20px var(--accent); }
+  100% { box-shadow: 0 0 5px var(--accent); }
+}
+
+.features, .gallery, .video, .about {
+  padding: 4em 2em;
+  text-align: center;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 1.5em;
+  border-radius: 10px;
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--accent);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px var(--accent);
+}
+
+.img-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.img-grid img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.video video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  margin-top: 2em;
+}
+
+footer {
+  background: #111;
+  padding: 2em;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 0.5em;
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 2s forwards 2s;
+}
+
+.chip {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--accent);
+  border-top: 4px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+
+/* ================================= */
+/* PAGE 2*/
+
+.glitch-bg-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+#page3 {
+  background: url('assets/stoty_background.png') center/cover no-repeat;
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+#glitchCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  background: transparent;
+}
+
+.intro-container {
+  max-width: 800px;
+  text-align: center;
+  animation: fadeInUp 1.5s ease-out;
+  backdrop-filter: blur(2px);
+}
+
+.intro-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px #ff4f81;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ccc;
+  margin-bottom: 2rem;
+}
+
+.glitch-box {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  color: #ff4f81;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #ff4f81;
+  display: inline-block;
+  animation: glitchAnim 2s infinite;
+}
+
+@keyframes glitchAnim {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ================================= */
+/* PAGE 3 */
+
+#page4 {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.system_container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.sidebar {
+  width: 140px;
+  background: #111;
+  border-right: 2px solid #ff0033;
+  padding: 1rem 0.5rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 0.6rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.sidebar li:hover {
+  border-left: 3px solid #ff0033;
+  background: #1a1a1a;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.lightboard {
+  width: 80%;
+  height: 80%;
+  background: rgba(20, 20, 20, 0.85);
+  border: 2px solid #ff0033;
+  box-shadow: 0 0 20px #ff0033;
+  padding: 2rem 3rem;
+  overflow-y: auto;
+  animation: floatIn 0.4s ease;
+}
+
+.panel-text h2 {
+  color: #ff0033;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.panel-text p {
+  line-height: 1.6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================================= */
+/* PAGE 4 */
+.video-page {
+  background: #000;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  height: 100vh;
+  padding: 2rem;
+  position: relative;
+}
+
+.video-header {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  color: #ff0033;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.video-frame {
+  width: 80%;
+  max-width: 960px;
+  border: 2px solid #ff0033;
+  box-shadow: 0 0 20px #ff0033;
+  padding: 0.5rem;
+  background: #111;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+
+.video-info {
+  margin-top: 2rem;
+  text-align: center;
+  max-width: 800px;
+}
+
+.video-info h2 {
+  color: #ff0033;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.video-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tags span {
+  background: #ff0033;
+  color: #000;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 3px;
+}
