@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Nova - 未来赛博游戏</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div id="loader"><div class="chip"></div></div>
+    <div class="page-container">
+        <div class="page">
+
+        <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-text">
+            <div class = "container">
+                <div class="typewriter">Code Name: Soul Tide</div>
+                <!-- <p class="subtitle">Code Name: Soul Tide</p> -->
+                <div class="scroll-indicator">
+                    <img src="assets/mouse.svg" alt="Scroll Mouse" class="mouse-svg" />
+                    <img src="assets/arrow-down.svg" alt="Scroll Arrow" class="arrow-svg" />
+                </div>
+
+                <!-- <a href="#intro" class="neon-btn">开始探索</a> -->
+            </div>
+        </div>
+        </section>
+        </div>
+
+    <div class="page">
+            <div class="video-header">[MODULE: VIDEO FEED]</div>
+
+            <div class="video-container">
+                <div class="video-frame">
+                <video id="gameVideo" controls poster="video-thumbnail.jpg">
+                    <source src="assets/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                </div>
+
+                <div class="video-info">
+                <h2>Game Demo Showcase</h2>
+                <p>Demonstrates posture mechanics, Seele abilities, and aerial combat flow.</p>
+                <div class="tags">
+                    <span>SEELE</span><span>Posture</span><span>Aerial</span><span>RT Mode</span>
+                </div>
+                </div>
+            </div>
+    </div>  
+
+    <div class="page">        
+        <div class="glitch-bg-layer">
+        <canvas id="glitchCanvas"></canvas>
+        </div>
+        <div class="intro-container">
+            <h2 class="intro-title">World Overview</h2>
+            <p class="intro-text">
+            In a world where human consciousness has been weaponized into destructive energy,  
+            SEELE—meaning “soul” in French—surpasses physical force in raw power.  
+            But this power comes at a cost: draining one's soul means death.  
+            Mega-corporations monopolize this resource, shaping the fate of humanity.
+            </p>
+            <p class="intro-text">
+            A fugitive bodyguard, framed for her employer’s murder, is forced into hiding.  
+            To survive, she establishes a link with players in the real world.  
+            Through SEELE’s boundless awareness, she seeks to expose the conspiracy that binds her fate.
+            </p>
+            <div class="glitch-box">
+            <span class="glitch-text">Status: Memory Stream — Active</span>
+            </div>
+        </div>
+    </div>  
+
+    <div class="page">
+
+        <div class="system_container">
+            <aside class="sidebar">
+                <ul>
+                <li onclick="showPanel('overview')">Game Overview</li>
+                <li onclick="showPanel('combat')">Combat System</li>
+                <li onclick="showPanel('world')">World Design</li>
+                <li onclick="showPanel('meta')">Meta Elements
+                </ul>
+            </aside>
+
+            <main class="content">
+                <div id="lightboard" class="lightboard">
+                <div id="panel-content" class="panel-text">
+                    <!-- Default content -->
+                    <h2>System Ready</h2>
+                    <p>Select a module from the left panel to learn more about our game.</p>
+                </div>
+                </div>
+            </main>
+        </div>
+    </div> 
+
+
+    <!-- <div class = "page">
+        <section class="about">
+        <h2 data-aos="fade-up">开发者</h2>
+        <p data-aos="fade-up" data-aos-delay="100">由 WhiteEurya 独立开发，融合系统架构与视觉美学。</p>
+    </section>  
+    </div> -->
+</div>
+
+
+  
+
+  <!-- <footer>
+    <p>© 2025 WhiteEurya | <a href="#">GitHub</a> | <a href="#">联系我</a></p>
+  </footer> -->
+
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.querySelector('.hero-bg').classList.add('glitch');
+    }, 3000); // 与打字动画时间一致
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+
+<script>
+const canvas = document.getElementById('glitchCanvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+function drawGlitch() {
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < 20; i++) {
+    const x = Math.random() * canvas.width;
+    const y = Math.random() * canvas.height;
+    const w = Math.random() * 200 + 20;
+    const h = Math.random() * 5 + 2;
+    ctx.fillStyle = 'red';
+    ctx.fillRect(x, y, w, h);
+  }
+}
+
+setInterval(drawGlitch, 120);
+
+</script>
+
+<script>
+function showPanel(type) {
+  const content = document.getElementById('panel-content');
+  content.innerHTML = ''; // 清空旧内容
+
+  let paragraphs = [];
+
+  switch (type) {
+    case 'overview':
+      paragraphs = [
+        'Game Overview',
+        'Fast-paced third-person gameplay. Play as Dr. Ce, confronting enemies and uncovering the story through dialogue and exploration.',
+        'Core mechanics: attack, dodge, block. Unique combat design featuring Seele abilities.',
+        'Hakone-style sandbox map with boss arenas. Meta elements integrated into gameplay.',
+        'Supports controller, keyboard, and bilingual interface.'
+      ];
+      break;
+    case 'combat':
+      paragraphs = [
+        'Combat System',
+        'Basic attacks, posture mechanics, Seele energy, time freeze, and soulspace mode.',
+        'Each weapon has unique traits and combo logic.'
+      ];
+      break;
+    case 'world':
+      paragraphs = [
+        'World Design',
+        'Hakone-style sandbox map with layered verticality, boss arenas, and environmental storytelling.'
+      ];
+      break;
+    case 'meta':
+      paragraphs = [
+        'Meta Elements',
+        'Gameplay integrates narrative layers, system feedback, and player awareness mechanics.'
+      ];
+      break;
+  }
+
+  typeParagraphs(content, paragraphs);
+}
+
+function typeParagraphs(container, lines, delay = 30) {
+  let index = 0;
+
+  function typeLine() {
+    if (index >= lines.length) return;
+
+    const line = lines[index];
+    const isTitle = index === 0;
+    const el = document.createElement(isTitle ? 'h2' : 'p');
+    container.appendChild(el);
+
+    let charIndex = 0;
+
+    function typeChar() {
+      if (charIndex < line.length) {
+        el.textContent += line.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeChar, delay);
+      } else {
+        index++;
+        setTimeout(typeLine, 300); // 下一段延迟
+      }
+    }
+
+    typeChar();
+  }
+
+  typeLine();
+}
+
+
+</script>
+
+<script>
+  function triggerGlitch() {
+  const bg = document.querySelector('.glitch-bg');
+  bg.style.filter = 'contrast(200%) brightness(150%) hue-rotate(30deg)';
+  bg.style.opacity = '0.8';
+
+  setTimeout(() => {
+    bg.style.filter = 'none';
+    bg.style.opacity = '1';
+  }, 150); // glitch lasts 150ms
+}
+
+// Trigger every few seconds randomly
+setInterval(() => {
+  if (Math.random() < 0.4) triggerGlitch(); // 40% chance
+}, 3000);
+
+</script>
+
+</body>
+</html>
