@@ -107,8 +107,8 @@ body {
 }
 
 .scroll-indicator {
-  position: fixed; /* 改为 fixed，确保始终在视口底部 */
-  bottom: 60px;     /* 距离底部更近 */
+  position: absolute; /* 改为 fixed，确保始终在视口底部 */
+  bottom: 40px;     /* 距离底部更近 */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
